@@ -1,0 +1,46 @@
+<%- include("partials/header"); -%>
+
+<h1>Compose</h1>
+
+<form action="/compose" method="post">
+  <div class="form-group">
+    <label for="exampleFormControlInput1">Title</label>
+    <input
+      type="text"
+      class="form-control"
+      id="exampleFormControlInput1"
+      name="postTitle"
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="exampleFormControlTextarea1">Post</label>
+    <textarea
+      class="form-control"
+      id="exampleFormControlTextarea1"
+      rows="4"
+      name="postBody"
+    ></textarea>
+  </div>
+  <button type="submit" class="btn btn-primary">Publish</button>
+</form>
+<br />
+
+<h1>Created Posts</h1>
+
+<% createdPosts.forEach(function(post) { %>
+<p class="createdPosts"><%= post.title %> 
+  <form class="deleteForm" action="/deletepost" method="post">
+    <button 
+    type="submit" 
+    class="btn btn-danger" 
+    name="thisPost" 
+    value="<%= post.title %>"
+    >
+    Delete
+    </button>
+  </form>
+</p>
+<% }); %> 
+
+<%- include("partials/footer"); -%>
